@@ -1,0 +1,11 @@
+node_modules/
+dist/
+coverage/
+reports/
+*.tgz
+.env
+config/sites.json
+gsc-ga.config.json
+credentials/
+.DS_Store
+.pi/

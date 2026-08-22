@@ -1,0 +1,18 @@
+{
+  "sites": [
+    {
+      "key": "example-site",
+      "label": "Example Site",
+      "gscSiteUrl": "sc-domain:example.com",
+      "ga4PropertyId": "123456789",
+      "funnelEvents": [
+        { "name": "tool_start", "label": "Tool started" },
+        { "name": "result_view", "label": "Result viewed", "aliases": ["legacy_result_view"] }
+      ],
+      "clarity": {
+        "tokenEnv": "CLARITY_TOKEN_EXAMPLE",
+        "numOfDays": 3
+      }
+    }
+  ]
+}
