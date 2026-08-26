@@ -14,7 +14,7 @@ import { renderReportMarkdown } from "./report/markdown.js";
 import { buildComparisonWindows } from "./shared/dates.js";
 import { AppError, formatError, toAppError } from "./shared/errors.js";
 
-const VERSION = "0.1.0";
+const VERSION = "0.0.1";
 const EXECUTABLE_DIR = path.dirname(fileURLToPath(import.meta.url));
 const PACKAGE_ROOT = path.resolve(EXECUTABLE_DIR, "..");
 

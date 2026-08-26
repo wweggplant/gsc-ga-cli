@@ -38,8 +38,8 @@ describe("pageComparisonKey — injective across distinct raw values", () => {
   });
 
   it("keeps protocol/host URL variants distinct (no silent cross-match)", () => {
-    expect(pageComparisonKey("https://www.catch-a-brainrot-game.wiki/")).not.toBe(
-      pageComparisonKey("http://catch-a-brainrot-game.wiki/")
+    expect(pageComparisonKey("https://www.sample-game.invalid/")).not.toBe(
+      pageComparisonKey("http://sample-game.invalid/")
     );
   });
 
@@ -56,12 +56,12 @@ describe("formatPageLabel — distinguishing display label", () => {
   });
 
   it("preserves the full URL so protocol/host variants stay distinguishable", () => {
-    const httpsLabel = formatPageLabel("https://www.catch-a-brainrot-game.wiki/");
-    const httpLabel = formatPageLabel("http://catch-a-brainrot-game.wiki/");
+    const httpsLabel = formatPageLabel("https://www.sample-game.invalid/");
+    const httpLabel = formatPageLabel("http://sample-game.invalid/");
 
     expect(httpsLabel).not.toBe(httpLabel);
-    expect(httpsLabel).toContain("https://www.catch-a-brainrot-game.wiki");
-    expect(httpLabel).toContain("http://catch-a-brainrot-game.wiki");
+    expect(httpsLabel).toContain("https://www.sample-game.invalid");
+    expect(httpLabel).toContain("http://sample-game.invalid");
   });
 
   it("shows a normalized path for path-style input", () => {

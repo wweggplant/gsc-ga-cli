@@ -27,7 +27,7 @@ describe("CLI", () => {
     expect(help.stdout.join("\n")).toContain("gsc-ga <command>");
     const version = capture();
     expect(await run(["--version"], version.io)).toBe(0);
-    expect(version.stdout).toEqual(["0.1.0"]);
+    expect(version.stdout).toEqual(["0.0.1"]);
   });
 
   it("initializes without overwriting unless forced", async () => {

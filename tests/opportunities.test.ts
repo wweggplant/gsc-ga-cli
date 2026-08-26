@@ -261,10 +261,10 @@ describe("detectOpportunities — page-key collision safety", () => {
   it("does not cross-match GSC pages that differ only by protocol/host", () => {
     const report = createCollisionReport({
       gscCurrentPages: [
-        { page: "https://www.catch-a-brainrot-game.wiki/", clicks: 10, impressions: 0, ctr: 0, position: 0 }
+        { page: "https://www.sample-game.invalid/", clicks: 10, impressions: 0, ctr: 0, position: 0 }
       ],
       gscPreviousPages: [
-        { page: "http://catch-a-brainrot-game.wiki/", clicks: 500, impressions: 0, ctr: 0, position: 0 }
+        { page: "http://sample-game.invalid/", clicks: 500, impressions: 0, ctr: 0, position: 0 }
       ]
     });
 
@@ -291,7 +291,7 @@ describe("detectOpportunities — page-key collision safety", () => {
   it("renders a low-CTR GSC page opportunity with the full URL, not a bare '/'", () => {
     const report = createCollisionReport({
       gscCurrentPages: [
-        { page: "https://www.catch-a-brainrot-game.wiki/", clicks: 1, impressions: 500, ctr: 0.01, position: 1 }
+        { page: "https://www.sample-game.invalid/", clicks: 1, impressions: 500, ctr: 0.01, position: 1 }
       ]
     });
 
@@ -299,15 +299,15 @@ describe("detectOpportunities — page-key collision safety", () => {
     const lowCtr = opportunities.find((item) => item.id.startsWith("gsc-low-ctr-page:"));
 
     expect(lowCtr).toBeTruthy();
-    expect(lowCtr?.title).toContain("https://www.catch-a-brainrot-game.wiki/");
+    expect(lowCtr?.title).toContain("https://www.sample-game.invalid/");
     expect(lowCtr?.title).not.toBe("高展现低点击页面：/");
   });
 
   it("emits the matched full GSC URL in the cross-source opportunity and picks the top variant", () => {
     const report = createCollisionReport({
       gscCurrentPages: [
-        { page: "https://www.catch-a-brainrot-game.wiki/", clicks: 5, impressions: 500, ctr: 0.02, position: 1 },
-        { page: "http://catch-a-brainrot-game.wiki/", clicks: 2, impressions: 200, ctr: 0.02, position: 2 }
+        { page: "https://www.sample-game.invalid/", clicks: 5, impressions: 500, ctr: 0.02, position: 1 },
+        { page: "http://sample-game.invalid/", clicks: 2, impressions: 200, ctr: 0.02, position: 2 }
       ],
       ga4CurrentLanding: [{ landingPage: "/", sessions: 50, activeUsers: 40 }]
     });
@@ -315,8 +315,8 @@ describe("detectOpportunities — page-key collision safety", () => {
     const cross = detectOpportunities(report).find((item) => item.id.startsWith("cross-gsc-ga4:"));
 
     expect(cross).toBeTruthy();
-    expect(cross?.title).toContain("https://www.catch-a-brainrot-game.wiki/");
-    expect(cross?.title).not.toContain("http://catch-a-brainrot-game.wiki/");
+    expect(cross?.title).toContain("https://www.sample-game.invalid/");
+    expect(cross?.title).not.toContain("http://sample-game.invalid/");
     expect(cross?.title).not.toBe("高流量页仍有点击率优化空间：/");
   });
 });

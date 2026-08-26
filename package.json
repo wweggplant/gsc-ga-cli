@@ -1,6 +1,6 @@
 {
   "name": "gsc-ga-cli",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "Generate deterministic Markdown SEO reports from Google Search Console, GA4, and optional Microsoft Clarity data.",
   "type": "module",
   "bin": {
